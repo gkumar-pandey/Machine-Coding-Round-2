@@ -10,8 +10,10 @@ const HabitCard = ({
   startDate,
   timeOfDay,
   goal,
-  handleEditHabit
+  handleEditHabit,
+  handleDeleteBtn
 }) => {
+  const { handleArchiveHabit } = useHabit();
   return (
     <div className="px-5 py-2  ">
       <div className=" text-white  ">
@@ -45,7 +47,19 @@ const HabitCard = ({
           >
             Edit
           </button>
-          <button className="bg-red-800 font-semibold px-4 py-1 text-xl rounded">
+          <button
+            onClick={() =>
+              handleDeleteBtn({
+                name,
+                description,
+                repeatTime,
+                startDate,
+                timeOfDay,
+                goal
+              })
+            }
+            className="bg-red-800 font-semibold px-4 py-1 text-xl rounded"
+          >
             Delete
           </button>
         </div>

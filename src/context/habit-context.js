@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer, useState } from "react";
-import { habitReducer } from "../reducer/habit-reducer";
+import { MOVE_TO_ARCHIVE, habitReducer } from "../reducer/habit-reducer";
 import { habitData } from "../data/data";
 
 const Habitcontext = createContext();

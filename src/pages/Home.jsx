@@ -2,26 +2,31 @@ import React, { useState } from "react";
 import Modal from "../components/Modal";
 import HabitForm from "../components/HabitForm";
 import Container from "../components/Container";
-import { habitData } from "../data/data";
 import HabitTiles from "../components/HabitTiles";
 import { useHabit } from "../context/habit-context";
 import { AiOutlinePlus } from "react-icons/ai";
 import HabitCard from "../components/HabitCard";
+import { MOVE_TO_ARCHIVE } from "../reducer/habit-reducer";
 
 const Home = () => {
   const {
     habitState: { habits },
-    sethabitForm
+    sethabitForm,
+    dispatchHabit
   } = useHabit();
   const [habit, setHabit] = useState("");
-  const [openModal, setOpenModal] = useState(false);
-  const [habitDetails, setHabitDetails] = useState(false);
-  const [editHabitModal, setEditHabitModal] = useState(false);
-  const handleModal = () => {
+
+  // Modal Handle
+  const [openHabitDetailsModal, setOpenHabitDetails] = useState(false);
+  const [openHabitFormModal, setOpenHabitFormModal] = useState(false);
+  const [openEditHabitModal, setOpenEditHabitModal] = useState(false);
+  const handleHabitFormModal = () => {
     sethabitForm("");
-    setOpenModal(!openModal);
+    setOpenHabitFormModal(!openHabitFormModal);
   };
-  const handleHabitDetailsModal = () => setHabitDetails(!habitDetails);
+  const handleHabitDetailsModal = () => {
+    setOpenHabitDetails(!openHabitDetailsModal);
+  };
   const handleHabitDetails = (habitName) => {
     const habitDetail = habits.find((item) => item.name === habitName);
     setHabit(habitDetail);
@@ -29,15 +34,22 @@ const Home = () => {
   };
 
   const handleEditHabit = () => {
-    setHabitDetails(false);
-    setEditHabitModal(!editHabitModal);
+    setOpenHabitDetails(false);
+    setOpenEditHabitModal(!openEditHabitModal);
     sethabitForm(habit);
   };
+
+  // delete function
+  const handleDeleteBtn = (habit) => {
+    dispatchHabit({ type: MOVE_TO_ARCHIVE, payload: habit });
+    setOpenHabitDetails(false);
+  };
+
   return (
     <div className=" min-h-screen bg-gray-50 ">
       <Container>
         <button
-          onClick={handleModal}
+          onClick={handleHabitFormModal}
           className=" flex text-lg flex-row items-center border bg-blue-800 text-white rounded font-semibold px-3 py-2  "
         >
           <AiOutlinePlus className="text-2xl mx-1 " />
@@ -51,15 +63,22 @@ const Home = () => {
           ))}
         </div>
       </Container>
-      <Modal open={openModal} handleModal={handleModal}>
-        <HabitForm handleModal={handleModal} />
-      </Modal>
-      {habitDetails && (
-        <Modal open={true} handleModal={handleHabitDetailsModal}>
-          <HabitCard {...habit} handleEditHabit={handleEditHabit} />
+      {openHabitFormModal && (
+        <Modal open={true} handleModal={handleHabitFormModal}>
+          <HabitForm handleModal={handleHabitFormModal} />
         </Modal>
       )}
-      {editHabitModal && (
+
+      {openHabitDetailsModal && (
+        <Modal open={true} handleModal={handleHabitDetailsModal}>
+          <HabitCard
+            {...habit}
+            handleEditHabit={handleEditHabit}
+            handleDeleteBtn={handleDeleteBtn}
+          />
+        </Modal>
+      )}
+      {openEditHabitModal && (
         <Modal open={true} handleModal={handleEditHabit}>
           <HabitForm handleModal={handleEditHabit} />
         </Modal>

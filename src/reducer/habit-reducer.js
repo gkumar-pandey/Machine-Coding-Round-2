@@ -9,7 +9,7 @@ export const habitReducer = (state, { type, payload }) => {
     case MOVE_TO_ARCHIVE:
       return {
         ...state,
-        habits: state.habits.filter((item) => item._id !== payload._id),
+        habits: state.habits.filter((item) => item.name !== payload.name),
         archiveHabits: [...state.archiveHabits, payload]
       };
     case ADD_HABIT:
