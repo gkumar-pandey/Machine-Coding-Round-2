@@ -2,26 +2,25 @@ export const habitData = [
   {
     name: "Exercise",
     description: "Go for a run or do a workout",
-    repeatTime: "Everyday",
+    repeatTime: "Daily",
     startDate: "2023-06-18",
     timeOfDay: "Morning",
-    goal: "30 minutes"
+    goal: "1 Times Daily "
   },
   {
     name: "Read",
     description: "Read a book or an article",
-    repeatTime: "Weekdays",
+    repeatTime: "Weekly",
     startDate: "2023-06-15",
     timeOfDay: "Evening",
-    goal: "20 pages"
+    goal: "1 Times Daily"
   },
   {
     name: "Meditate",
     description: "Practice meditation or mindfulness",
-    repeatTime: "Everyday",
+    repeatTime: "Monthly",
     startDate: "2023-06-01",
     timeOfDay: "Anytime",
-    goal: "10 minutes"
+    goal: "2 Times Daily"
   }
-  // Add more habit objects as needed
 ];

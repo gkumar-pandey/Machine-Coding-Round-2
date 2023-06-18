@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
+import { useHabit } from "../context/habit-context";
+import Modal from "./Modal";
+import HabitForm from "./HabitForm";
 
 const HabitCard = ({
   name,
@@ -6,10 +9,11 @@ const HabitCard = ({
   repeatTime,
   startDate,
   timeOfDay,
-  goal
+  goal,
+  handleEditHabit
 }) => {
   return (
-    <div className="px-5 py-2">
+    <div className="px-5 py-2  ">
       <div className=" text-white  ">
         <h1 className="text-3xl font-bold font-sans my-1 ">{name}</h1>
         <p className="text-xl font-sans my-1 ">
@@ -34,7 +38,11 @@ const HabitCard = ({
           <span className=" text-lg ">{goal}</span>
         </p>
         <div className=" flex justify-end items-center gap-5 ">
-          <button className=" bg-blue-900 font-semibold px-4 py-1 text-xl rounded ">
+          <button
+            type="button"
+            className=" bg-blue-900 font-semibold px-4 py-1 text-xl rounded "
+            onClick={handleEditHabit}
+          >
             Edit
           </button>
           <button className="bg-red-800 font-semibold px-4 py-1 text-xl rounded">
