@@ -6,7 +6,7 @@ import HabitTiles from "../components/HabitTiles";
 import { useHabit } from "../context/habit-context";
 import { AiOutlinePlus } from "react-icons/ai";
 import HabitCard from "../components/HabitCard";
-import { MOVE_TO_ARCHIVE } from "../reducer/habit-reducer";
+import { EDIT_HABIT, MOVE_TO_ARCHIVE } from "../reducer/habit-reducer";
 
 const Home = () => {
   const {
@@ -45,6 +45,11 @@ const Home = () => {
     setOpenHabitDetails(false);
   };
 
+  const handleEditBtn = (habit) => {
+    dispatchHabit({ type: EDIT_HABIT, payload: habit });
+    setOpenEditHabitModal(false);
+  };
+
   return (
     <div className=" min-h-screen bg-gray-50 ">
       <Container>
@@ -80,7 +85,11 @@ const Home = () => {
       )}
       {openEditHabitModal && (
         <Modal open={true} handleModal={handleEditHabit}>
-          <HabitForm handleModal={handleEditHabit} />
+          <HabitForm
+            isEdit={openEditHabitModal}
+            handleEditBtn={handleEditBtn}
+            handleModal={handleEditHabit}
+          />
         </Modal>
       )}
     </div>

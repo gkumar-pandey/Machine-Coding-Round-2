@@ -1,5 +1,6 @@
 export const habitData = [
   {
+    _id: 1,
     name: "Exercise",
     description: "Go for a run or do a workout",
     repeatTime: "Daily",
@@ -8,6 +9,7 @@ export const habitData = [
     goal: "1 Times Daily "
   },
   {
+    _id: 2,
     name: "Read",
     description: "Read a book or an article",
     repeatTime: "Weekly",
@@ -16,6 +18,7 @@ export const habitData = [
     goal: "1 Times Daily"
   },
   {
+    _id: 3,
     name: "Meditate",
     description: "Practice meditation or mindfulness",
     repeatTime: "Monthly",

@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { useHabit } from "../context/habit-context";
-import { ADD_HABIT } from "../reducer/habit-reducer";
+import { ADD_HABIT, EDIT_HABIT } from "../reducer/habit-reducer";
 
-const HabitForm = ({ handleModal }) => {
+const HabitForm = ({ handleModal, handleEditBtn, isEdit }) => {
   const { habitState, dispatchHabit, habitForm, sethabitForm } = useHabit();
 
   const handleSaveBtn = (e) => {
     e.preventDefault();
-    dispatchHabit({ type: ADD_HABIT, payload: habitForm });
+    if (isEdit) {
+      dispatchHabit({ type: EDIT_HABIT, payload: habitForm });
+    } else {
+      dispatchHabit({ type: ADD_HABIT, payload: habitForm });
+    }
     handleModal();
   };
 

@@ -13,10 +13,9 @@ const HabitTiles = ({
   const [bgcolor, setBgcolor] = useState("");
 
   const generateRandomColor = () => {
-    const red = Math.floor(Math.random() * 256);
-    const green = Math.floor(Math.random() * 256);
-    const blue = Math.floor(Math.random() * 256);
-    return `rgb(${red}, ${green}, ${blue})`;
+    const colorsArr = ["#0C134F", "#3F0071", "#1C0C5B", "#007880"];
+    const randomColor = colorsArr[Math.floor(Math.random() * colorsArr.length)];
+    return `${randomColor}`;
   };
 
   useEffect(() => {
